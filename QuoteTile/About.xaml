@@ -1,0 +1,77 @@
+﻿<SettingsFlyout
+    x:Class="QuoteTile.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QuoteTile"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="About"
+    d:DesignWidth="346">
+
+    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+        <!-- The StackPanel(s) below define individual content sections -->
+
+        <!-- Content Section 1-->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+
+            <!-- Section 1 header -->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="QuoteTile" FontSize="28" />
+
+            <!-- Section 1 body -->
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    QuoteTile Version 1.1.0.0
+                </TextBlock.Text>
+            </TextBlock>
+            <!-- Section 1 body -->
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    QuoteTile is a simple app that shows inspiring quotes. Refresh quotes anytime, copy quotes to clipboard with one single click, and share quotes anywhere!
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Changelog coming soon on GitHub!
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    QuoteTile fetches inspiring quotes from the open API Quotable (http://api.quotable.io/random). Each time you tap Refresh, the app retrieves a new random quote from this service and displays it along with the author.
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Check out ChrisRLillo's new Album "Love and Hate", and his new exclusive app as well, called "ChrisRLillo Music", also available in 8Store!
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Made exclusively for 8Store, by ChockingNetDude.
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Made by Andrew Simson
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    Discord: orchestra_scores
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    GitHub: rdcubing
+                </TextBlock.Text>
+            </TextBlock>
+
+        </StackPanel>
+
+        <!-- Define more Content Sections below as necessary -->
+
+    </StackPanel>
+</SettingsFlyout>

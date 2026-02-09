@@ -1,0 +1,165 @@
+﻿<Page
+    x:Class="QuoteTile.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QuoteTile"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Name="QuoteFadeStoryboard">
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteText"
+                Storyboard.TargetProperty="Opacity"
+                From="0" To="1"
+                Duration="0:0:0.5"/>
+            <DoubleAnimation
+                Storyboard.TargetName="AuthorText"
+                Storyboard.TargetProperty="Opacity"
+                From="0" To="0.7"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF0F2027" Offset="0"/>
+                <GradientStop Color="#FF203A43" Offset="0.5"/>
+                <GradientStop Color="#FF2C5364" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    Margin="50,50,0,20">
+            <Image Source="ms-appx:///Assets/Logo.png"
+               Width="50"
+               Height="50"
+               Stretch="Uniform"/>
+        </StackPanel>
+        <TextBlock Text="QuoteTile"
+           FontFamily="Segoe UI"
+           FontWeight="Light"
+           FontSize="72"
+           Margin="128,24,0,0"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Top"/>
+        <Border x:Name="QuoteCard"
+                Background="#FF2C3E50"
+                CornerRadius="12"
+                Padding="24"
+                Margin="40"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MaxWidth="700">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+                <TextBlock x:Name="QuoteText"
+                    Text="Loading quote..."
+                    TextWrapping="Wrap"
+                    FontFamily="Segoe UI"
+                    FontWeight="Light"
+                    FontSize="28"
+                    FontStyle="Italic"
+                    TextAlignment="Center"
+                    Foreground="White"
+                    Margin="20"/>
+                <TextBlock x:Name="AuthorText"
+                    Text=""
+                    FontFamily="Segoe UI"
+                    FontSize="16"
+                    Opacity="0.7"
+                    TextAlignment="Right"
+                    Foreground="LightGray"
+                    Margin="0,0,20,40"/>
+                <Rectangle Height="1"
+                   Margin="0,16"
+                   Fill="#33FFFFFF"/>
+                <Button Content="Refresh Quote"
+                    Click="Refresh_Click"
+                    HorizontalAlignment="Center"
+                    Padding="20,10"
+                    Background="#FF1976D2"
+                    Foreground="White"
+                    FontFamily="Segoe UI"
+                    FontSize="18"
+                    BorderThickness="0"/>
+                <Button Content="Copy Quote"
+                    Click="CopyQuote_Click"
+                    HorizontalAlignment="Center"
+                    Padding="15,8"
+                    Background="#FF1976D2"
+                    Foreground="White"
+                    FontFamily="Segoe UI"
+                    FontSize="16"
+                    BorderThickness="0"
+                    Margin="0,10,0,0"/>
+                <Button Content="Share"
+                    Click="Share_Click"
+                    HorizontalAlignment="Center"
+                    Padding="15,8"
+                    Background="#FF455A64"
+                    Foreground="White"
+                    FontFamily="Segoe UI"
+                    FontSize="16"
+                    BorderThickness="0"
+                    Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+        <Button Content="ℹ" Click="SettingsButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
+        <Button Content="Personalize" Click="Personalize_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,62"/>
+        <TextBlock Text="QuoteTile 1.1.0.0"
+           FontSize="12"
+           Foreground="#66FFFFFF"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Bottom"
+           Margin="0,0,0,12"/>
+        <Polygon
+            Points="0,160 160,0 240,0 0,240"
+            Fill="#1F3A5F"
+            Opacity="0.35"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"/>
+
+        <!-- Medium accent -->
+        <Polygon
+            Points="0,120 120,0 180,0 0,180"
+            Fill="#B88A99"
+            Opacity="0.6"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"/>
+
+        <!-- Small sharp highlight -->
+        <Polygon
+            Points="0,80 80,0 120,0 0,120"
+            Fill="#FFFFFF"
+            Opacity="0.12"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"/>
+        <Polygon
+            Points="0,0 140,0 0,140"
+            Fill="#888a99"
+            Opacity="0.25"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+        <Polygon
+            Points="0,40 40,0 80,40 40,80"
+            Fill="#FFFFFF"
+            Opacity="0.10"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,80,80,0"/>
+
+        <Polygon
+            Points="0,30 30,0 60,30 30,60"
+            Fill="#FFFFFF"
+            Opacity="0.20"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,160,140,0"/>
+
+
+
+
+    </Grid>
+</Page>
