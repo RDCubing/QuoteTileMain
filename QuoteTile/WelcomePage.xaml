@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="QuoteTile.WelcomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QuoteTile"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- Slide + Fade Storyboards (dynamic distance set in code-behind) -->
+        <Storyboard x:Name="SlideFadeInStoryboard">
+            <DoubleAnimation x:Name="SlideInAnimation"
+                             Storyboard.TargetName="ContentContainer"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             Duration="0:0:1.5"
+                             EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <QuadraticEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="ContentContainer"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:1.5"
+                             EnableDependentAnimation="True"/>
+        </Storyboard>
+
+        <Storyboard x:Name="SlideFadeOutStoryboard" Completed="SlideFadeOutStoryboard_Completed">
+            <DoubleAnimation x:Name="SlideOutAnimation"
+                             Storyboard.TargetName="ContentContainer"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             Duration="0:0:1.5"
+                             EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <QuadraticEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="ContentContainer"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1" To="0" Duration="0:0:1.5"
+                             EnableDependentAnimation="True"/>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid x:Name="MainGrid">
+        <!-- Background Image -->
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Rectangle x:Name="DimOverlay" Fill="#88000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+
+        <!-- Content container for slide + fade -->
+        <Grid x:Name="ContentContainer" HorizontalAlignment="Left" VerticalAlignment="Top"
+              Margin="50,180,0,0" RenderTransformOrigin="0,0" Opacity="0">
+            <Grid.RenderTransform>
+                <TranslateTransform X="0"/>
+            </Grid.RenderTransform>
+
+            <!-- Container Grid for actual content -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Title -->
+                    <RowDefinition Height="*"/>
+                    <!-- Description expands -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Button -->
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <TextBlock Grid.Row="0"
+               Text="Welcome to QuoteTile!" 
+               FontSize="72" 
+               FontFamily="Segoe UI Light" 
+               FontWeight="Light" 
+               Foreground="White"
+               TextAlignment="Left" 
+               Margin="0,0,0,20"/>
+
+                <!-- Description / Subtitle -->
+                <TextBlock Grid.Row="1"
+               Text="Discover inspiring quotes every day, save your favorites, and personalize your tiles to make your experience uniquely yours. Browse categories, explore community quotes, and set your tiles to inspire your mood. With QuoteTile, your home screen becomes a canvas of daily wisdom and motivation!" 
+               FontSize="24" 
+               FontFamily="Segoe UI Light" 
+               FontWeight="Light"
+               Foreground="White"
+               TextAlignment="Left" 
+               TextWrapping="Wrap"
+               Width="700"
+               Margin="0,0,0,30"/>
+
+                <!-- Get Started Button -->
+                <Button Grid.Row="2"
+            x:Name="StartButton"
+            Content="Get Started" 
+            Click="GetStarted_Click" 
+            Width="250" 
+            Height="70"
+            FontSize="24"
+            HorizontalAlignment="Left"
+            Background="#FF2196F3"
+            Foreground="White"
+            BorderBrush="White"
+            BorderThickness="2"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

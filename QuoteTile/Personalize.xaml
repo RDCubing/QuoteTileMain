@@ -8,7 +8,13 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="Personalize"
-    d:DesignWidth="346">
+    d:DesignWidth="346" HeaderBackground="#FF0d47a1">
+    <SettingsFlyout.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#e9f0f3" Offset="0"/>
+            <GradientStop Color="#a2a5ac" Offset="1"/>
+        </LinearGradientBrush>
+    </SettingsFlyout.Background>
 
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
@@ -22,13 +28,45 @@
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Personalize" FontSize="28" />
 
             <!-- Section 1 body -->
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
-                <TextBlock.Text>
-                    Feature coming soon in future, feature updates. Stay tuned!
-                </TextBlock.Text>
-            </TextBlock>
 
         </StackPanel>
+        <ComboBox x:Name="comboBox"
+          Header="Background"
+          Width="200"
+          SelectionChanged="comboBox_SelectionChanged">
+
+            <ComboBoxItem Content="Beach (default)"/>
+            <ComboBoxItem Content="Gradient 1"/>
+            <ComboBoxItem Content="Gradient 2"/>
+            <ComboBoxItem Content="Gradient 3"/>
+            <ComboBoxItem Content="Dark Teal 1"/>
+            <ComboBoxItem Content="Dark Teal 2"/>
+            <ComboBoxItem Content="Dark Teal 3"/>
+            <ComboBoxItem Content="Dark Ocean"/>
+            <ComboBoxItem Content="Sunrise"/>
+            <ComboBoxItem Content="Mountain 1"/>
+            <ComboBoxItem Content="Mountain 2"/>
+            <ComboBoxItem Content="Mountain 3"/>
+            <ComboBoxItem Content="Dark Blue"/>
+            <ComboBoxItem Content="Metro Horizon"/>
+        </ComboBox>
+
+        <CheckBox x:Name="DimCheckBox"
+          Content="Dim Background"
+          Margin="0,20,0,0"
+          Checked="DimCheckBox_Checked"
+          Unchecked="DimCheckBox_Unchecked"/>
+        <ToggleSwitch x:Name="FavoritesToggle"
+              Header="Favorites in Live Tile"
+              OnContent="On"
+              OffContent="Off"
+              Toggled="FavoritesToggle_Toggled"/>
+        <ToggleSwitch x:Name="TileIconToggle"
+              Header="Tile Icon in Live Tile"
+              OnContent="On"
+              OffContent="Off"
+              Toggled="TileIconToggle_Toggled"/>
+
 
         <!-- Define more Content Sections below as necessary -->
 

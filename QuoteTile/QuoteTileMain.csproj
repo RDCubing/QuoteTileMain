@@ -107,26 +107,48 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AboutUs.xaml.cs">
+      <DependentUpon>AboutUs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppBackgroundHelper.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="CommQuotes.xaml.cs">
+      <DependentUpon>CommQuotes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DevHub.xaml.cs">
+      <DependentUpon>DevHub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Favorites.xaml.cs">
+      <DependentUpon>Favorites.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuoteModel.cs" />
     <Compile Include="Personalize.xaml.cs">
       <DependentUpon>Personalize.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FavoriteService.cs" />
+    <Compile Include="StaffMember.cs" />
+    <Compile Include="TileUpdaterTask.cs" />
+    <Compile Include="WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="QuoteTile_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +164,28 @@
     <Content Include="Assets\Square70x70Logo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Images\282.jpg" />
+    <Content Include="Images\81squares.png" />
+    <Content Include="Images\alex.jpg" />
+    <Content Include="Images\andrew.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\portada_3000_1.png" />
+    <Content Include="Images\tnm0ZI.jpg" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\xylo.png" />
+    <Content Include="Images\dark-ocean-4896-x-3264-wallpaper-zw0nf7tvntz2mlob.jpg" />
+    <Content Include="Images\dark-teal-background-i1g1tp72e271b8ny.jpg" />
+    <Content Include="Images\dark-teal-n40bzelmlt0mbavq.jpg" />
+    <Content Include="Images\dark-teal.jpg" />
+    <Content Include="Images\LogoChris.png" />
+    <Content Include="Images\quotetilebg_-_copia.png" />
+    <Content Include="Images\remove.png" />
+    <Content Include="Images\milestone.png" />
+    <Content Include="Images\Snow Mountains Desktop Background Wallpaper.jpg" />
+    <Content Include="Images\snow-mountainer-night-sky-stars-scenery-31-4K.jpg" />
+    <Content Include="Images\sunrise-desktop-g2e998omhun2lfym.jpg" />
+    <Content Include="Images\wallpaperflare.com_wallpaper %282%29.jpg" />
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -149,6 +193,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AboutUs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommQuotes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DevHub.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Favorites.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,10 +220,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

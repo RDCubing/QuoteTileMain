@@ -8,158 +8,2017 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <Storyboard x:Name="SlideInStoryboard">
+
+            <!-- Title Slide -->
+            <DoubleAnimation
+            Storyboard.TargetName="TitleText"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+            From="-200"
+            To="0"
+            Duration="0:0:1.2">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <!-- Title Fade -->
+            <DoubleAnimation
+            Storyboard.TargetName="TitleText"
+            Storyboard.TargetProperty="Opacity"
+            From="0"
+            To="1"
+            Duration="0:0:1.2"/>
+
+            <!-- Logo Slide (slightly delayed) -->
+            <DoubleAnimation
+            Storyboard.TargetName="LogoPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+            From="-150"
+            To="0"
+            Duration="0:0:1.2"
+            BeginTime="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <!-- Logo Fade -->
+            <DoubleAnimation
+            Storyboard.TargetName="LogoPanel"
+            Storyboard.TargetProperty="Opacity"
+            From="0"
+            To="1"
+            Duration="0:0:1.2"
+            BeginTime="0:0:0.3"/>
+
+        </Storyboard>
+        <Storyboard x:Name="BottomSlideStoryboard">
+
+            <!-- Version Text -->
+            <DoubleAnimation
+        Storyboard.TargetName="VersionText"
+        Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+        From="30"
+        To="0"
+        Duration="0:0:1.0"
+        BeginTime="0:0:0.9">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation
+        Storyboard.TargetName="VersionText"
+        Storyboard.TargetProperty="Opacity"
+        From="0"
+        To="1"
+        Duration="0:0:1.0"
+        BeginTime="0:0:0.9"/>
+
+        </Storyboard>
+        
+    <Storyboard x:Name="QuoteFadeStartupStoryboard">
+            <!-- Slide animation -->
+            <DoubleAnimation
+            Storyboard.TargetName="MainPanelTransform"
+            Storyboard.TargetProperty="X"
+            From="200" To="0"
+            Duration="0:0:1.2"
+            EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+
+            <!-- Optional: subtle fade-in -->
+            <DoubleAnimation
+            Storyboard.TargetName="MainPanel"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.6"
+            EnableDependentAnimation="True"/>
+            <DoubleAnimation
+            Storyboard.TargetName="StatusText"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="0.7"
+            Duration="0:0:1.2"/>
+    </Storyboard>
         <Storyboard x:Name="QuoteFadeStoryboard">
+
             <DoubleAnimation
-                Storyboard.TargetName="QuoteText"
+            Storyboard.TargetName="QuoteCard"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            
+            <DoubleAnimation
+            Storyboard.TargetName="StatusText"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="0.7"
+            Duration="0:0:0.5"/>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay"
                 Storyboard.TargetProperty="Opacity"
-                From="0" To="1"
+                From="0"
+                To="1"
                 Duration="0:0:0.5"/>
+
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard1">
             <DoubleAnimation
-                Storyboard.TargetName="AuthorText"
+            Storyboard.TargetName="QuoteCard1"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+            
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard1"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay1"
                 Storyboard.TargetProperty="Opacity"
-                From="0" To="0.7"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard2">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard2"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard2"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay2"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard3">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard3"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard3"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay3"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard4">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard4"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard4"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay4"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard5">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard5"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard5"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay5"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard6">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard6"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard6"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay6"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard7">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard7"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard7"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay7"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard8">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard8"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard8"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay8"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Name="QuoteFadeStoryboard9">
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard9"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1"
+            Duration="0:0:0.5"/>
+
+            <DoubleAnimation
+            Storyboard.TargetName="QuoteCard9"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            From="30" To="0"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation
+                Storyboard.TargetName="QuoteCardOverlay9"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
                 Duration="0:0:0.5"/>
         </Storyboard>
     </Page.Resources>
-
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FF0F2027" Offset="0"/>
-                <GradientStop Color="#FF203A43" Offset="0.5"/>
-                <GradientStop Color="#FF2C5364" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Left"
-                    Margin="50,50,0,20">
-            <Image Source="ms-appx:///Assets/Logo.png"
-               Width="50"
-               Height="50"
-               Stretch="Uniform"/>
-        </StackPanel>
-        <TextBlock Text="QuoteTile"
+        <Grid x:Name="LayoutRoot">
+            <Grid.Background>
+                <ImageBrush x:Name="MainBackground"
+                    ImageSource="ms-appx:///Images/tnm0ZI.jpg"
+                    Stretch="UniformToFill"/>
+            </Grid.Background>
+            <!-- Semi-transparent overlay to “soften” background -->
+            <Rectangle x:Name="DimOverlay" Fill="#88000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+        <TextBlock x:Name="TitleText"
+           Text="QuoteTile"
            FontFamily="Segoe UI"
            FontWeight="Light"
            FontSize="72"
            Margin="128,24,0,0"
            HorizontalAlignment="Left"
-           VerticalAlignment="Top"/>
-        <Border x:Name="QuoteCard"
-                Background="#FF2C3E50"
-                CornerRadius="12"
-                Padding="24"
-                Margin="40"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                MaxWidth="700">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
-                <TextBlock x:Name="QuoteText"
-                    Text="Loading quote..."
-                    TextWrapping="Wrap"
-                    FontFamily="Segoe UI"
-                    FontWeight="Light"
-                    FontSize="28"
-                    FontStyle="Italic"
-                    TextAlignment="Center"
-                    Foreground="White"
-                    Margin="20"/>
-                <TextBlock x:Name="AuthorText"
-                    Text=""
+           VerticalAlignment="Top">
+
+            <TextBlock.RenderTransform>
+                <TranslateTransform X="-150"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+        <StackPanel x:Name="LogoPanel" Orientation="Vertical"
+                    HorizontalAlignment="Left"
+                    Margin="50,50,0,20">
+            <StackPanel.RenderTransform>
+                <TranslateTransform X="-100"/>
+            </StackPanel.RenderTransform>
+            <Image Source="ms-appx:///Assets/Logo.png"
+               Width="50"
+               Height="50"
+               Stretch="Uniform"/>
+            </StackPanel>
+        <ScrollViewer
+            HorizontalScrollMode="Enabled"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollMode="Disabled"
+            VerticalScrollBarVisibility="Disabled"
+            ZoomMode="Disabled">
+            <StackPanel x:Name="MainPanel" Orientation="Horizontal">
+                <StackPanel.RenderTransform>
+                    <TranslateTransform x:Name="MainPanelTransform" X="200"/>
+                </StackPanel.RenderTransform>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard"
+                        Background="#AA121216"
+                        CornerRadius="14"
+                        Padding="36"
+                        Margin="60"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        MaxWidth="760"
+                        BorderBrush="#22FFFFFF"
+                        BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText"
+                       Text="Loading quote..."
+                       TextWrapping="Wrap"
+                       FontFamily="Segoe UI"
+                       FontWeight="Light"
+                       FontSize="28"
+                       FontStyle="Italic"
+                       TextAlignment="Center"
+                       Foreground="White"
+                       Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText"
+                       Text="Loading author..."
+                       FontFamily="Segoe UI"
+                       FontSize="18"
+                       Opacity="0.85"
+                       TextAlignment="Right"
+                       Foreground="LightGray"
+                       Margin="0,0,0,10"/>
+
+                            <ItemsControl x:Name="TagsPanel"
+                      HorizontalAlignment="Stretch"
+                      Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                CornerRadius="10"
+                                Padding="10,4"
+                                Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                    FontSize="12"
+                                    Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText"
+                           FontFamily="Segoe UI"
+                           FontSize="13"
+                           Opacity="0.7"
+                           Foreground="LightGray"
+                           Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText"
+                           FontFamily="Segoe UI"
+                           FontSize="13"
+                           Opacity="0.7"
+                           Foreground="LightGray"/>
+                            </StackPanel>
+
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                       Margin="0,0,0,20"
+                       Fill="#33FFFFFF"/>
+
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                            Click="Refresh_Click"
+                            Height="70"
+                            Margin="6"
+                            Background="#BF1976D2"
+                            Foreground="White"
+                            BorderBrush="#661976D2"
+                            BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                   Text="⟳"
+                                   FontSize="22"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                            Click="CopyQuote_Click"
+                            Height="70"
+                            Margin="6"
+                            Background="#BF1976D2"
+                            Foreground="White"
+                            BorderBrush="#661976D2"
+                            BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                   Text="📄"
+                                   FontSize="22"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Share -->
+                                <Button Grid.Column="2"
+                            Click="Share_Click"
+                            Height="70"
+                            Margin="6"
+                            Background="#BF1976D2"
+                            Foreground="White"
+                            BorderBrush="#661976D2"
+                            BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                   Text="↗"
+                                   FontSize="22"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,4"/>
+                                        <TextBlock Text="Share"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Favorite -->
+                                <Button Grid.Column="3"
+                            Click="Favorite_Click"
+                            Height="70"
+                            Margin="6"
+                            Background="#BF1976D2"
+                            Foreground="White"
+                            BorderBrush="#661976D2"
+                            BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                   Text="★"
+                                   FontSize="22"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,4"/>
+                                        <TextBlock Text="Favorite"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                    </Border>
+                    <!-- Overlay title attached to QuoteCard -->
+                    <TextBlock x:Name="QuoteCardOverlay" Text="random"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard1"
+                    Background="#AA14181C"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText1"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText1"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel1"
+                          HorizontalAlignment="Stretch"
+                          Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                    CornerRadius="10"
+                                    Padding="10,4"
+                                    Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                        FontSize="12"
+                                        Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText1"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText1"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh1_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote1_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay1" Text="inspirational"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard2"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText2"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText2"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel2"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText2"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText2"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh2_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote2_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay2" Text="technology"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard3"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText3"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText3"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel3"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText3"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText3"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh3_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote3_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay3" Text="wisdom"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard4"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText4"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText4"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel4"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText4"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText4"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh4_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote4_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay4" Text="success"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard5"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText5"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText5"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel5"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText5"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText5"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh5_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote5_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay5" Text="motivational"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard6"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText6"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText6"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel6"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText6"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText6"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh6_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote6_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay6" Text="life"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard7"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText7"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText7"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel7"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText7"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText7"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh7_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote7_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay7" Text="famous quotes"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard8"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText8"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText8"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel8"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText8"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText8"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh8_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote8_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay8" Text="philosophy"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border x:Name="QuoteCard9"
+                    Background="#AA10161E"
+                    CornerRadius="14"
+                    Padding="36"
+                    Margin="60"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="760"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                        <Border.RenderTransform>
+                            <CompositeTransform TranslateY="30"/>
+                        </Border.RenderTransform>
+
+                        <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MaxWidth="620">
+
+                            <!-- Quote -->
+                            <TextBlock x:Name="QuoteText9"
+                           Text="Loading quote..."
+                           TextWrapping="Wrap"
+                           FontFamily="Segoe UI"
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontStyle="Italic"
+                           TextAlignment="Center"
+                           Foreground="White"
+                           Margin="0,0,0,16"/>
+
+                            <!-- Author -->
+                            <TextBlock x:Name="AuthorText9"
+                           Text="Loading author..."
+                           FontFamily="Segoe UI"
+                           FontSize="18"
+                           Opacity="0.85"
+                           TextAlignment="Right"
+                           Foreground="LightGray"
+                           Margin="0,0,0,10"/>
+                            <ItemsControl x:Name="TagsPanel9"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,8,0,12">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#334CAF50"
+                                        CornerRadius="10"
+                                        Padding="10,4"
+                                        Margin="4">
+
+                                            <TextBlock Text="{Binding}"
+                                           FontSize="12"
+                                           Foreground="White"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                            <!-- Metadata -->
+                            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,20">
+
+                                <TextBlock x:Name="DateAddedText9"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"
+                               Margin="0,0,20,0"/>
+
+                                <TextBlock x:Name="DateModifiedText9"
+                               FontFamily="Segoe UI"
+                               FontSize="13"
+                               Opacity="0.7"
+                               Foreground="LightGray"/>
+                            </StackPanel>
+                            <!-- Divider -->
+                            <Rectangle Height="1"
+                           Margin="0,0,0,20"
+                           Fill="#33FFFFFF"/>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Refresh -->
+                                <Button Grid.Column="0"
+                                Click="Refresh9_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="⟳"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Refresh"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                                <!-- Copy -->
+                                <Button Grid.Column="1"
+                                Click="CopyQuote9_Click"
+                                Height="70"
+                                Margin="6"
+                                Background="#BF1976D2"
+                                Foreground="White"
+                                BorderBrush="#661976D2"
+                                BorderThickness="1">
+
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontFamily="Segoe UI Symbol"
+                                       Text="📄"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                        <TextBlock Text="Copy"
+                                       FontSize="12"
+                                       HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="QuoteCardOverlay9" Text="happiness"
+               FontFamily="Segoe UI"
+               FontWeight="Light"
+               FontSize="72"
+               Foreground="#CCFFFFFF"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="80,10,0,0"
+               IsHitTestVisible="False"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <TextBlock x:Name="StatusText"
+                    Text="Status: Loading..."
+                   TextWrapping="Wrap"
                     FontFamily="Segoe UI"
                     FontSize="16"
                     Opacity="0.7"
-                    TextAlignment="Right"
+                    TextAlignment="Left"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
                     Foreground="LightGray"
-                    Margin="0,0,20,40"/>
-                <Rectangle Height="1"
-                   Margin="0,16"
-                   Fill="#33FFFFFF"/>
-                <Button Content="Refresh Quote"
-                    Click="Refresh_Click"
-                    HorizontalAlignment="Center"
-                    Padding="20,10"
-                    Background="#FF1976D2"
-                    Foreground="White"
-                    FontFamily="Segoe UI"
-                    FontSize="18"
-                    BorderThickness="0"/>
-                <Button Content="Copy Quote"
-                    Click="CopyQuote_Click"
-                    HorizontalAlignment="Center"
-                    Padding="15,8"
-                    Background="#FF1976D2"
-                    Foreground="White"
-                    FontFamily="Segoe UI"
-                    FontSize="16"
-                    BorderThickness="0"
-                    Margin="0,10,0,0"/>
-                <Button Content="Share"
-                    Click="Share_Click"
-                    HorizontalAlignment="Center"
-                    Padding="15,8"
-                    Background="#FF455A64"
-                    Foreground="White"
-                    FontFamily="Segoe UI"
-                    FontSize="16"
-                    BorderThickness="0"
-                    Margin="0,10,0,0"/>
-            </StackPanel>
-        </Border>
-        <Button Content="ℹ" Click="SettingsButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
-        <Button Content="Personalize" Click="Personalize_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,62"/>
-        <TextBlock Text="QuoteTile 1.1.0.0"
+                    Margin="20"/>
+      
+        <TextBlock x:Name="VersionText"
+           Text="QuoteTile 2.1.3.0"
            FontSize="12"
            Foreground="#66FFFFFF"
            HorizontalAlignment="Center"
            VerticalAlignment="Bottom"
-           Margin="0,0,0,12"/>
-        <Polygon
-            Points="0,160 160,0 240,0 0,240"
-            Fill="#1F3A5F"
-            Opacity="0.35"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"/>
+           Margin="0,0,0,12">
 
-        <!-- Medium accent -->
-        <Polygon
-            Points="0,120 120,0 180,0 0,180"
-            Fill="#B88A99"
-            Opacity="0.6"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"/>
-
-        <!-- Small sharp highlight -->
-        <Polygon
-            Points="0,80 80,0 120,0 0,120"
-            Fill="#FFFFFF"
-            Opacity="0.12"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"/>
-        <Polygon
-            Points="0,0 140,0 0,140"
-            Fill="#888a99"
-            Opacity="0.25"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
-        <Polygon
-            Points="0,40 40,0 80,40 40,80"
-            Fill="#FFFFFF"
-            Opacity="0.10"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="0,80,80,0"/>
-
-        <Polygon
-            Points="0,30 30,0 60,30 30,60"
-            Fill="#FFFFFF"
-            Opacity="0.20"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="0,160,140,0"/>
-
-
-
-
+            <TextBlock.RenderTransform>
+                <TranslateTransform Y="30"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Page>

@@ -8,9 +8,14 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="About"
-    d:DesignWidth="346">
-
-    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
+    d:DesignWidth="346" HeaderBackground="#FF0d47a1">
+    <SettingsFlyout.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#e9f0f3" Offset="0"/>
+            <GradientStop Color="#a2a5ac" Offset="1"/>
+        </LinearGradientBrush>
+    </SettingsFlyout.Background>
+        <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
         <!-- The StackPanel(s) below define individual content sections -->
@@ -22,43 +27,45 @@
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="QuoteTile" FontSize="28" />
 
             <!-- Section 1 body -->
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+            
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" FontWeight="Bold" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    QuoteTile Version 1.1.0.0
+                    QuoteTile (version 2.1.3.0)
                 </TextBlock.Text>
             </TextBlock>
-            <!-- Section 1 body -->
+                <!-- Section 1 body -->
             <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    QuoteTile is a simple app that shows inspiring quotes. Refresh quotes anytime, copy quotes to clipboard with one single click, and share quotes anywhere!
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
-                <TextBlock.Text>
-                    Changelog coming soon on GitHub!
+                    QuoteTile is a simple app that shows inspiring quotes. Refresh quotes anytime, copy quotes to clipboard with one single click, and share quotes anywhere! Choose your favorite quotes and store them as many as you like!
                 </TextBlock.Text>
             </TextBlock>
             <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    QuoteTile fetches inspiring quotes from the open API Quotable (http://api.quotable.io/random). Each time you tap Refresh, the app retrieves a new random quote from this service and displays it along with the author.
+                    QuoteTile fetches inspiring quotes from the open API Quotable.
                 </TextBlock.Text>
             </TextBlock>
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    Check out ChrisRLillo's new Album "Love and Hate", and his new exclusive app as well, called "ChrisRLillo Music", also available in 8Store!
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,25" TextWrapping="Wrap">
-                <TextBlock.Text>
-                    Made exclusively for 8Store, by ChockingNetDude.
+                    Made by Andrew Simson (AndrewTheGeek)
                 </TextBlock.Text>
             </TextBlock>
             <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    Made by Andrew Simson
+                    Feature updates by Xylo
                 </TextBlock.Text>
             </TextBlock>
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        Bug-fixing by Alex (KeyboardGremlin)
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        Tested by ChrisRLillo
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontStyle="Italic" Margin="0,0,0,0" TextWrapping="Wrap">
                 <TextBlock.Text>
                     Discord: orchestra_scores
                 </TextBlock.Text>
@@ -68,6 +75,7 @@
                     GitHub: rdcubing
                 </TextBlock.Text>
             </TextBlock>
+            
 
         </StackPanel>
 
