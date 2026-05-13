@@ -116,7 +116,7 @@ namespace QuoteTile
             try
             {
                 HttpClient client = new HttpClient();
-                Uri uri = new Uri("http://api.quotable.io/random");
+                Uri uri = new Uri($"http://api.quotable.io/random?cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -203,7 +203,7 @@ namespace QuoteTile
             try
             {
                 HttpClient client = new HttpClient();
-                Uri uri = new Uri("http://api.quotable.io/random?tags=inspirational");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=inspirational&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -256,7 +256,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=technology");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=technology&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -309,7 +309,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=wisdom");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=wisdom&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -362,7 +362,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=success");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=success&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -415,7 +415,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=motivational");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=motivational&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -468,7 +468,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=life");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=life&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -521,7 +521,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=famous-quotes");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=famous-quotes&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -574,7 +574,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=philosophy");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=philosophy&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
@@ -627,7 +627,7 @@ namespace QuoteTile
             {
                 HttpClient client = new HttpClient();
 
-                Uri uri = new Uri("http://api.quotable.io/random?tags=happiness");
+                Uri uri = new Uri($"http://api.quotable.io/random?tags=happiness&cb={DateTime.UtcNow.Ticks}");
                 string json1 = await client.GetStringAsync(uri);
                 JObject data1 = JObject.Parse(json1);
                 string quote = data1["content"].ToString();
