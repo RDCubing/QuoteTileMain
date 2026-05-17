@@ -28,9 +28,14 @@
 
             <!-- Section 1 body -->
             
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,0" FontWeight="Bold" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    QuoteTile (version 2.2.26136.0)
+                </TextBlock.Text>
+            </TextBlock>
             <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" FontWeight="Bold" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    QuoteTile (version 2.1.26133.0)
+                    v3.0 Milestone 1
                 </TextBlock.Text>
             </TextBlock>
                 <!-- Section 1 body -->

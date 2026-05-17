@@ -41,9 +41,6 @@ namespace QuoteTile
 
             // Navigate to main page
             this.Frame.Navigate(typeof(MainPage));
-
-            // Enable SettingsPane commands
-            SettingsPane.GetForCurrentView().CommandsRequested += ((App)Application.Current).OnCommandsRequested;
         }
     }
 }

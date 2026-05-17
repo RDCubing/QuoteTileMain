@@ -66,11 +66,10 @@ namespace QuoteTile
                 // Navigate to MainPage
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
 
-                // Subscribe to SettingsPane since we are on main content
-                SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
             }
 
             Window.Current.Activate();
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
             LoadQuote();
             tileTimer = new DispatcherTimer();
             tileTimer.Interval = TimeSpan.FromSeconds(5);
@@ -87,11 +86,14 @@ namespace QuoteTile
                                          SettingsPaneCommandsRequestedEventArgs args)
         {
             var rootFrame = Window.Current.Content as Frame;
-            if (rootFrame?.Content is WelcomePage)
+
+
+            // Favorites
+            var welcomeCommand = new SettingsCommand("welcome", "Welcome Page", handler =>
             {
-                // If the current page is WelcomePage, do not show commands
-                return;
-            }
+                rootFrame.Navigate(typeof(WelcomePage));
+            });
+            args.Request.ApplicationCommands.Add(welcomeCommand);
 
             // Favorites
             var favoritesCommand = new SettingsCommand("favorites", "Favorites", handler =>
@@ -107,20 +109,6 @@ namespace QuoteTile
             });
             args.Request.ApplicationCommands.Add(commquotesCommand);
 
-            // Developers Hub
-            var devhubCommand = new SettingsCommand("devhub", "Developers Hub", handler =>
-            {
-                rootFrame.Navigate(typeof(DevHub));
-            });
-            args.Request.ApplicationCommands.Add(devhubCommand);
-
-            // About Us
-            var aboutusCommand = new SettingsCommand("aboutus", "About Us", handler =>
-            {
-                rootFrame.Navigate(typeof(AboutUs));
-            });
-            args.Request.ApplicationCommands.Add(aboutusCommand);
-
             // Personalize
             args.Request.ApplicationCommands.Add(new SettingsCommand(
                 "personalize",
@@ -131,7 +119,7 @@ namespace QuoteTile
             args.Request.ApplicationCommands.Add(
                 new SettingsCommand("openWebsite", "Visit Website", async (p) =>
                 {
-                    var uri = new Uri("https://discord.gg/kYQz5agYtT");
+                    var uri = new Uri("https://discord.gg/YBsVhkcHT4");
                     await Launcher.LaunchUriAsync(uri);
                 })
             );

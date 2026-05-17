@@ -90,45 +90,76 @@
 
             </Border>
 
-            <!-- Favorites ListView (Right Side) -->
-            <ListView x:Name="FavoritesListView"
-                      Grid.Column="1"
-                      IsItemClickEnabled="True"
-                      ItemClick="FavoritesList_ItemClick"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
-                      ScrollViewer.HorizontalScrollMode="Disabled"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollMode="Enabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <!-- Favorites GridView (Right Side) -->
+            <GridView x:Name="FavoritesListView"
+          Grid.Column="1"
+          IsItemClickEnabled="True"
+          ItemClick="FavoritesList_ItemClick"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          ScrollViewer.HorizontalScrollMode="Disabled"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+          ScrollViewer.VerticalScrollMode="Enabled"
+          ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-                <ListView.ItemsPanel>
+                <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsStackPanel Orientation="Vertical"/>
+                        <ItemsWrapGrid Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                </GridView.ItemsPanel>
 
-                <ListView.ItemTemplate>
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
+
+                <GridView.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="#AA121216"
-                                CornerRadius="12"
-                                Margin="10"
-                                Padding="15"
-                                BorderBrush="#22FFFFFF"
-                                BorderThickness="1">
-                            <StackPanel>
-                                <TextBlock Text="{Binding Content}"
-                                           TextWrapping="Wrap"
-                                           Foreground="White"
-                                           FontSize="18"/>
-                                <TextBlock Text="{Binding Author}"
-                                           Foreground="LightGray"
-                                           Margin="0,12,0,0"/>
-                            </StackPanel>
-                        </Border>
+
+                        <Grid Width="260" Height="160">
+
+                            <!-- Background Card -->
+                            <Border Background="#AA121216"
+                    CornerRadius="12"
+                    Padding="15"
+                    BorderBrush="#22FFFFFF"
+                    BorderThickness="1">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="{Binding Content}"
+                               TextWrapping="Wrap"
+                               Foreground="White"
+                               FontSize="18"
+                               MaxLines="4"/>
+
+                                    <TextBlock Text="{Binding Author}"
+                               Foreground="LightGray"
+                               Margin="0,12,0,0"/>
+                                </StackPanel>
+
+                            </Border>
+
+                            <!-- Overlay (watermark style) -->
+                            <TextBlock Text="favorites"
+                       FontFamily="Segoe UI"
+                       FontWeight="Light"
+                       FontSize="42"
+                       Foreground="#33FFFFFF"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="12,-10,0,0"
+                       IsHitTestVisible="False"/>
+
+                        </Grid>
+
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </GridView.ItemTemplate>
+
+            </GridView>
         </Grid>
     </Grid>
 </Page>

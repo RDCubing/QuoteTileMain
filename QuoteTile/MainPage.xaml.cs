@@ -24,8 +24,8 @@ using Newtonsoft.Json.Linq;
 using QuoteTile.Models;
 using QuoteTile.Services;
 using Windows.UI.Xaml.Shapes;
-
-
+using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -38,10 +38,21 @@ namespace QuoteTile
     {
         private QuoteModel _currentQuote;
         private FavoriteService _favoriteService = FavoriteService.Instance;
+        public ObservableCollection<QuoteItem> MoreQuotes
+    = new ObservableCollection<QuoteItem>();
+        private ObservableCollection<QuoteItem> FavoritesCollection =
+    new ObservableCollection<QuoteItem>();
         public MainPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Required;
             _favoriteService = FavoriteService.Instance;
+
+            MoreQuotesGrid.ItemsSource = MoreQuotes;
+
+            
+
+
 
             var value = ApplicationData.Current.LocalSettings.Values["DimBackground"];
             bool isDimmed = false;
@@ -66,9 +77,57 @@ namespace QuoteTile
             DataTransferManager.GetForCurrentView().DataRequested += OnDataRequested;
         }
 
+        private async void LoadQuotes()
+        {
+            try
+            {
+                StatusText.Text = "Loading quotes...";
+
+                HttpClient client = new HttpClient();
+
+                string url =
+                    "http://api.quotable.io/quotes?limit=4&t=" +
+                    DateTime.UtcNow.Ticks;
+
+                string json = await client.GetStringAsync(new Uri(url));
+
+                QuoteResponse response =
+                    JsonConvert.DeserializeObject<QuoteResponse>(json);
+
+                MoreQuotes.Clear();
+
+                foreach (var quote in response.results)
+                {
+                    MoreQuotes.Add(quote);
+                }
+
+                MoreQuotesGrid.ItemsSource = MoreQuotes;
+
+                StatusText.Text = $"Loaded {MoreQuotes.Count} quotes";
+            }
+            catch (Exception ex)
+            {
+                StatusText.Text = "Error loading quotes: " + ex.Message;
+            }
+        }
+
+        private void FavoritesGrid_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Favorites));
+        }
+
         // Runs after QuoteFadeStartupStoryboard finishes
         private async void QuoteFadeStartupStoryboard_Completed(object sender, object e)
         {
+            LoadQuotes();
+            var quotes = await LoadFavoritesFromFileAsync();
+
+            FavoritesCollection.Clear();
+
+            foreach (var q in quotes.Take(4))
+            {
+                FavoritesCollection.Add(q);
+            }
             LoadQuote();
             await Task.Delay(1200);
             LoadQuote1();
@@ -76,18 +135,7 @@ namespace QuoteTile
             LoadQuote2();
             await Task.Delay(800);
             LoadQuote3();
-            await Task.Delay(800);
-            LoadQuote4();
-            await Task.Delay(800);
-            LoadQuote5();
-            await Task.Delay(800);
-            LoadQuote6();
-            await Task.Delay(800);
-            LoadQuote7();
-            await Task.Delay(800);
-            LoadQuote8();
-            await Task.Delay(800);
-            LoadQuote9();
+
         }
 
         private DispatcherTimer _quoteTimer;
@@ -99,15 +147,50 @@ namespace QuoteTile
             MainBackground.ImageSource = new BitmapImage(new Uri(imagePath));
         }
 
+        private async void RefreshFavorites_Click(object sender, RoutedEventArgs e)
+        {
+            var quotes = await LoadFavoritesFromFileAsync();
+
+            FavoritesCollection.Clear();
+
+            foreach (var q in quotes.Take(4))
+            {
+                FavoritesCollection.Add(q);
+            }
+
+            FavoritesGrid.ItemsSource = FavoritesCollection;
+        }
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            FavoritesGrid.ItemsSource = FavoritesCollection;
+
             // Optional: load saved background from LocalSettings
             var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (settings.Values.ContainsKey("AppBackground"))
             {
                 string path = settings.Values["AppBackground"].ToString();
                 ChangeBackground(path);
+            }
+        }
+
+        private async Task<List<QuoteItem>> LoadFavoritesFromFileAsync()
+        {
+            try
+            {
+                var folder = ApplicationData.Current.LocalFolder;
+                var file = await folder.GetFileAsync("favorites.json");
+
+                string json = await FileIO.ReadTextAsync(file);
+
+                var quotes = JsonConvert.DeserializeObject<List<QuoteItem>>(json);
+
+                return quotes ?? new List<QuoteItem>();
+            }
+            catch
+            {
+                return new List<QuoteItem>();
             }
         }
 
@@ -144,7 +227,6 @@ namespace QuoteTile
                 AuthorText.Text = $"— {_currentQuote.Author}";
                 DateAddedText.Text = "Date added: " + dateAdded;
                 DateModifiedText.Text = "Date modified: " + dateModified;
-                StatusText.Text = "Status: Online!";
 
                 TagsPanel.ItemsSource = tagList;
             }
@@ -179,7 +261,6 @@ namespace QuoteTile
                     .Where(t => t.Length > 0)
                     .ToList();
 
-                StatusText.Text = "Status: Offline! (Are you trying to access the API in a restricted network?)";
             }
 
             // Pick random color
@@ -356,324 +437,6 @@ namespace QuoteTile
             QuoteFadeStoryboard3.Begin();
         }
 
-        private async void LoadQuote4()
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-
-                Uri uri = new Uri($"http://api.quotable.io/random?tags=success&cb={DateTime.UtcNow.Ticks}");
-                string json1 = await client.GetStringAsync(uri);
-                JObject data1 = JObject.Parse(json1);
-                string quote = data1["content"].ToString();
-                string author = "— " + data1["author"].ToString();
-                string dateAdded = data1["dateAdded"].ToString();
-                string dateModified = data1["dateModified"].ToString();
-
-                var tagsArray = data1["tags"];
-                List<string> tagList = new List<string>();
-
-                foreach (var tag in tagsArray)
-                {
-                    tagList.Add(tag.ToString());
-                }
-
-                QuoteText4.Text = "“" + quote + "”";
-                AuthorText4.Text = author;
-                DateAddedText4.Text = "Date added: " + dateAdded;
-                DateModifiedText4.Text = "Date modified: " + dateModified;
-
-                TagsPanel4.ItemsSource = tagList;
-            }
-
-            catch (Exception)
-            {
-                QuoteText4.Text = "Failed to load online quotes.";
-                AuthorText4.Text = "";
-                DateAddedText4.Text = "";
-                DateModifiedText4.Text = "";
-                TagsPanel4.ItemsSource = null;
-            }
-
-            // Pick random color
-            Random colorRand = new Random();
-            int colorIndex; // renamed to avoid duplicate 'index'
-            do
-            {
-                colorIndex = colorRand.Next(cardColors.Count);
-            } while (colorIndex == lastColorIndex);
-
-            lastColorIndex = colorIndex;
-
-            QuoteCard4.Background = cardColors[colorIndex];
-            QuoteFadeStoryboard4.Begin();
-        }
-
-        private async void LoadQuote5()
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-
-                Uri uri = new Uri($"http://api.quotable.io/random?tags=motivational&cb={DateTime.UtcNow.Ticks}");
-                string json1 = await client.GetStringAsync(uri);
-                JObject data1 = JObject.Parse(json1);
-                string quote = data1["content"].ToString();
-                string author = "— " + data1["author"].ToString();
-                string dateAdded = data1["dateAdded"].ToString();
-                string dateModified = data1["dateModified"].ToString();
-
-                var tagsArray = data1["tags"];
-                List<string> tagList = new List<string>();
-
-                foreach (var tag in tagsArray)
-                {
-                    tagList.Add(tag.ToString());
-                }
-
-                QuoteText5.Text = "“" + quote + "”";
-                AuthorText5.Text = author;
-                DateAddedText5.Text = "Date added: " + dateAdded;
-                DateModifiedText5.Text = "Date modified: " + dateModified;
-
-                TagsPanel5.ItemsSource = tagList;
-            }
-
-            catch (Exception)
-            {
-                QuoteText5.Text = "Failed to load online quotes.";
-                AuthorText5.Text = "";
-                DateAddedText5.Text = "";
-                DateModifiedText5.Text = "";
-                TagsPanel5.ItemsSource = null;
-            }
-
-            // Pick random color
-            Random colorRand = new Random();
-            int colorIndex; // renamed to avoid duplicate 'index'
-            do
-            {
-                colorIndex = colorRand.Next(cardColors.Count);
-            } while (colorIndex == lastColorIndex);
-
-            lastColorIndex = colorIndex;
-
-            QuoteCard5.Background = cardColors[colorIndex];
-            QuoteFadeStoryboard5.Begin();
-        }
-
-        private async void LoadQuote6()
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-
-                Uri uri = new Uri($"http://api.quotable.io/random?tags=life&cb={DateTime.UtcNow.Ticks}");
-                string json1 = await client.GetStringAsync(uri);
-                JObject data1 = JObject.Parse(json1);
-                string quote = data1["content"].ToString();
-                string author = "— " + data1["author"].ToString();
-                string dateAdded = data1["dateAdded"].ToString();
-                string dateModified = data1["dateModified"].ToString();
-
-                var tagsArray = data1["tags"];
-                List<string> tagList = new List<string>();
-
-                foreach (var tag in tagsArray)
-                {
-                    tagList.Add(tag.ToString());
-                }
-
-                QuoteText6.Text = "“" + quote + "”";
-                AuthorText6.Text = author;
-                DateAddedText6.Text = "Date added: " + dateAdded;
-                DateModifiedText6.Text = "Date modified: " + dateModified;
-
-                TagsPanel6.ItemsSource = tagList;
-            }
-
-            catch (Exception)
-            {
-                QuoteText6.Text = "Failed to load online quotes.";
-                AuthorText6.Text = "";
-                DateAddedText6.Text = "";
-                DateModifiedText6.Text = "";
-                TagsPanel6.ItemsSource = null;
-            }
-
-            // Pick random color
-            Random colorRand = new Random();
-            int colorIndex; // renamed to avoid duplicate 'index'
-            do
-            {
-                colorIndex = colorRand.Next(cardColors.Count);
-            } while (colorIndex == lastColorIndex);
-
-            lastColorIndex = colorIndex;
-
-            QuoteCard6.Background = cardColors[colorIndex];
-            QuoteFadeStoryboard6.Begin();
-        }
-
-        private async void LoadQuote7()
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-
-                Uri uri = new Uri($"http://api.quotable.io/random?tags=famous-quotes&cb={DateTime.UtcNow.Ticks}");
-                string json1 = await client.GetStringAsync(uri);
-                JObject data1 = JObject.Parse(json1);
-                string quote = data1["content"].ToString();
-                string author = "— " + data1["author"].ToString();
-                string dateAdded = data1["dateAdded"].ToString();
-                string dateModified = data1["dateModified"].ToString();
-
-                var tagsArray = data1["tags"];
-                List<string> tagList = new List<string>();
-
-                foreach (var tag in tagsArray)
-                {
-                    tagList.Add(tag.ToString());
-                }
-
-                QuoteText7.Text = "“" + quote + "”";
-                AuthorText7.Text = author;
-                DateAddedText7.Text = "Date added: " + dateAdded;
-                DateModifiedText7.Text = "Date modified: " + dateModified;
-
-                TagsPanel7.ItemsSource = tagList;
-            }
-
-            catch (Exception)
-            {
-                QuoteText7.Text = "Failed to load online quotes.";
-                AuthorText7.Text = "";
-                DateAddedText7.Text = "";
-                DateModifiedText7.Text = "";
-                TagsPanel7.ItemsSource = null;
-            }
-
-            // Pick random color
-            Random colorRand = new Random();
-            int colorIndex; // renamed to avoid duplicate 'index'
-            do
-            {
-                colorIndex = colorRand.Next(cardColors.Count);
-            } while (colorIndex == lastColorIndex);
-
-            lastColorIndex = colorIndex;
-
-            QuoteCard7.Background = cardColors[colorIndex];
-            QuoteFadeStoryboard7.Begin();
-        }
-
-        private async void LoadQuote8()
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-
-                Uri uri = new Uri($"http://api.quotable.io/random?tags=philosophy&cb={DateTime.UtcNow.Ticks}");
-                string json1 = await client.GetStringAsync(uri);
-                JObject data1 = JObject.Parse(json1);
-                string quote = data1["content"].ToString();
-                string author = "— " + data1["author"].ToString();
-                string dateAdded = data1["dateAdded"].ToString();
-                string dateModified = data1["dateModified"].ToString();
-
-                var tagsArray = data1["tags"];
-                List<string> tagList = new List<string>();
-
-                foreach (var tag in tagsArray)
-                {
-                    tagList.Add(tag.ToString());
-                }
-
-                QuoteText8.Text = "“" + quote + "”";
-                AuthorText8.Text = author;
-                DateAddedText8.Text = "Date added: " + dateAdded;
-                DateModifiedText8.Text = "Date modified: " + dateModified;
-
-                TagsPanel8.ItemsSource = tagList;
-            }
-
-            catch (Exception)
-            {
-                QuoteText8.Text = "Failed to load online quotes.";
-                AuthorText8.Text = "";
-                DateAddedText8.Text = "";
-                DateModifiedText8.Text = "";
-                TagsPanel8.ItemsSource = null;
-            }
-
-            // Pick random color
-            Random colorRand = new Random();
-            int colorIndex; // renamed to avoid duplicate 'index'
-            do
-            {
-                colorIndex = colorRand.Next(cardColors.Count);
-            } while (colorIndex == lastColorIndex);
-
-            lastColorIndex = colorIndex;
-
-            QuoteCard8.Background = cardColors[colorIndex];
-            QuoteFadeStoryboard8.Begin();
-        }
-
-        private async void LoadQuote9()
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-
-                Uri uri = new Uri($"http://api.quotable.io/random?tags=happiness&cb={DateTime.UtcNow.Ticks}");
-                string json1 = await client.GetStringAsync(uri);
-                JObject data1 = JObject.Parse(json1);
-                string quote = data1["content"].ToString();
-                string author = "— " + data1["author"].ToString();
-                string dateAdded = data1["dateAdded"].ToString();
-                string dateModified = data1["dateModified"].ToString();
-
-                var tagsArray = data1["tags"];
-                List<string> tagList = new List<string>();
-
-                foreach (var tag in tagsArray)
-                {
-                    tagList.Add(tag.ToString());
-                }
-
-                QuoteText9.Text = "“" + quote + "”";
-                AuthorText9.Text = author;
-                DateAddedText9.Text = "Date added: " + dateAdded;
-                DateModifiedText9.Text = "Date modified: " + dateModified;
-
-                TagsPanel9.ItemsSource = tagList;
-            }
-
-            catch (Exception)
-            {
-                QuoteText9.Text = "Failed to load online quotes.";
-                AuthorText9.Text = "";
-                DateAddedText9.Text = "";
-                DateModifiedText9.Text = "";
-                TagsPanel9.ItemsSource = null;
-            }
-
-            // Pick random color
-            Random colorRand = new Random();
-            int colorIndex; // renamed to avoid duplicate 'index'
-            do
-            {
-                colorIndex = colorRand.Next(cardColors.Count);
-            } while (colorIndex == lastColorIndex);
-
-            lastColorIndex = colorIndex;
-
-            QuoteCard.Background = cardColors[colorIndex];
-            QuoteFadeStoryboard9.Begin();
-        }
-
         private void StartQuoteAutoRefresh()
         {
             _quoteTimer = new DispatcherTimer();
@@ -691,18 +454,6 @@ namespace QuoteTile
             LoadQuote2();
             await Task.Delay(800);
             LoadQuote3();
-            await Task.Delay(800);
-            LoadQuote4();
-            await Task.Delay(800);
-            LoadQuote5();
-            await Task.Delay(800);
-            LoadQuote6();
-            await Task.Delay(800);
-            LoadQuote7();
-            await Task.Delay(800);
-            LoadQuote8();
-            await Task.Delay(800);
-            LoadQuote9();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -731,37 +482,7 @@ namespace QuoteTile
         {
             LoadQuote3();
         }
-
-        private void Refresh4_Click(object sender, RoutedEventArgs e)
-        {
-            LoadQuote4();
-        }
-
-        private void Refresh5_Click(object sender, RoutedEventArgs e)
-        {
-            LoadQuote5();
-        }
-
-        private void Refresh6_Click(object sender, RoutedEventArgs e)
-        {
-            LoadQuote6();
-        }
-
-        private void Refresh7_Click(object sender, RoutedEventArgs e)
-        {
-            LoadQuote7();
-        }
-
-        private void Refresh8_Click(object sender, RoutedEventArgs e)
-        {
-            LoadQuote8();
-        }
-
-        private void Refresh9_Click(object sender, RoutedEventArgs e)
-        {
-            LoadQuote9();
-        }
-
+        
         private async void CopyQuote_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(QuoteText.Text))
@@ -885,192 +606,7 @@ namespace QuoteTile
 
             await dialog.ShowAsync();
         }
-
-        private async void CopyQuote4_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(QuoteText4.Text))
-                return;
-
-            // Combine quote and author text
-            string fullQuote = $"{QuoteText4.Text} {AuthorText4.Text}";
-
-            // Copy to clipboard
-            var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-            dataPackage.SetText(fullQuote);
-            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-            // Fancy MessageDialog
-            var dialog = new Windows.UI.Popups.MessageDialog(
-                "📋 Quote copied to clipboard!"
-            )
-            {
-                Title = "QuoteTile Copy"
-            };
-
-            // Add OK button
-            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-
-            // Default button
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            await dialog.ShowAsync();
-        }
-
-        private async void CopyQuote5_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(QuoteText5.Text))
-                return;
-
-            // Combine quote and author text
-            string fullQuote = $"{QuoteText5.Text} {AuthorText5.Text}";
-
-            // Copy to clipboard
-            var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-            dataPackage.SetText(fullQuote);
-            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-            // Fancy MessageDialog
-            var dialog = new Windows.UI.Popups.MessageDialog(
-                "📋 Quote copied to clipboard!"
-            )
-            {
-                Title = "QuoteTile Copy"
-            };
-
-            // Add OK button
-            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-
-            // Default button
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            await dialog.ShowAsync();
-        }
-
-        private async void CopyQuote6_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(QuoteText6.Text))
-                return;
-
-            // Combine quote and author text
-            string fullQuote = $"{QuoteText6.Text} {AuthorText6.Text}";
-
-            // Copy to clipboard
-            var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-            dataPackage.SetText(fullQuote);
-            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-            // Fancy MessageDialog
-            var dialog = new Windows.UI.Popups.MessageDialog(
-                "📋 Quote copied to clipboard!"
-            )
-            {
-                Title = "QuoteTile Copy"
-            };
-
-            // Add OK button
-            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-
-            // Default button
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            await dialog.ShowAsync();
-        }
-
-        private async void CopyQuote7_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(QuoteText7.Text))
-                return;
-
-            // Combine quote and author text
-            string fullQuote = $"{QuoteText7.Text} {AuthorText7.Text}";
-
-            // Copy to clipboard
-            var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-            dataPackage.SetText(fullQuote);
-            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-            // Fancy MessageDialog
-            var dialog = new Windows.UI.Popups.MessageDialog(
-                "📋 Quote copied to clipboard!"
-            )
-            {
-                Title = "QuoteTile Copy"
-            };
-
-            // Add OK button
-            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-
-            // Default button
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            await dialog.ShowAsync();
-        }
-
-        private async void CopyQuote8_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(QuoteText8.Text))
-                return;
-
-            // Combine quote and author text
-            string fullQuote = $"{QuoteText8.Text} {AuthorText8.Text}";
-
-            // Copy to clipboard
-            var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-            dataPackage.SetText(fullQuote);
-            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-            // Fancy MessageDialog
-            var dialog = new Windows.UI.Popups.MessageDialog(
-                "📋 Quote copied to clipboard!"
-            )
-            {
-                Title = "QuoteTile Copy"
-            };
-
-            // Add OK button
-            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-
-            // Default button
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            await dialog.ShowAsync();
-        }
-
-        private async void CopyQuote9_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(QuoteText9.Text))
-                return;
-
-            // Combine quote and author text
-            string fullQuote = $"{QuoteText9.Text} {AuthorText9.Text}";
-
-            // Copy to clipboard
-            var dataPackage = new Windows.ApplicationModel.DataTransfer.DataPackage();
-            dataPackage.SetText(fullQuote);
-            Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(dataPackage);
-
-            // Fancy MessageDialog
-            var dialog = new Windows.UI.Popups.MessageDialog(
-                "📋 Quote copied to clipboard!"
-            )
-            {
-                Title = "QuoteTile Copy"
-            };
-
-            // Add OK button
-            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-
-            // Default button
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 0;
-
-            await dialog.ShowAsync();
-        }
+        
 
         private void Share_Click(object sender, RoutedEventArgs e)
         {
@@ -1224,5 +760,10 @@ namespace QuoteTile
         {
             return DimOverlay != null && DimOverlay.Visibility == Visibility.Visible;
         }
+    }
+    public class FavoriteQuoteItem
+    {
+        public string fquote { get; set; }
+        public string fauthor { get; set; }
     }
 }
