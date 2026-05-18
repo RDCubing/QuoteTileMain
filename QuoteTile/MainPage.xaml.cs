@@ -104,6 +104,17 @@ namespace QuoteTile
             MainBackground.ImageSource = new BitmapImage(new Uri(imagePath));
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            // Optional: load saved background from LocalSettings
+            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (settings.Values.ContainsKey("AppBackground"))
+            {
+                string path = settings.Values["AppBackground"].ToString();
+                ChangeBackground(path);
+            }
+        }
+
         private async void LoadQuote()
         {
             try
