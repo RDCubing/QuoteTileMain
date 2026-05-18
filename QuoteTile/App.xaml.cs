@@ -86,14 +86,11 @@ namespace QuoteTile
                                          SettingsPaneCommandsRequestedEventArgs args)
         {
             var rootFrame = Window.Current.Content as Frame;
-
-
-            // Favorites
-            var welcomeCommand = new SettingsCommand("welcome", "Welcome Page", handler =>
+            if (rootFrame?.Content is WelcomePage)
             {
-                rootFrame.Navigate(typeof(WelcomePage));
-            });
-            args.Request.ApplicationCommands.Add(welcomeCommand);
+                // If the current page is WelcomePage, do not show commands
+                return;
+            }
 
             // Favorites
             var favoritesCommand = new SettingsCommand("favorites", "Favorites", handler =>
@@ -108,6 +105,20 @@ namespace QuoteTile
                 rootFrame.Navigate(typeof(CommQuotes));
             });
             args.Request.ApplicationCommands.Add(commquotesCommand);
+
+            // Developers Hub
+            var devhubCommand = new SettingsCommand("devhub", "Developers Hub", handler =>
+            {
+                rootFrame.Navigate(typeof(DevHub));
+            });
+            args.Request.ApplicationCommands.Add(devhubCommand);
+
+            // About Us
+            var aboutusCommand = new SettingsCommand("aboutus", "About Us", handler =>
+            {
+                rootFrame.Navigate(typeof(AboutUs));
+            });
+            args.Request.ApplicationCommands.Add(aboutusCommand);
 
             // Personalize
             args.Request.ApplicationCommands.Add(new SettingsCommand(
