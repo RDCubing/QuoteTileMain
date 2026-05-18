@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="87ede5ef-2e48-48bf-acaa-a6a7cc0d6df4" Publisher="CN=Andrew Simson" Version="2.2.26138.0" />
+  <Identity Name="87ede5ef-2e48-48bf-acaa-a6a7cc0d6df4" Publisher="CN=Andrew Simson" Version="2.2.26138.1" />
   <Properties>
     <DisplayName>QuoteTile</DisplayName>
     <PublisherDisplayName>Andrew Simson</PublisherDisplayName>

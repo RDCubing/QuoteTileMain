@@ -30,7 +30,7 @@
             
             <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" FontWeight="Bold" TextWrapping="Wrap">
                 <TextBlock.Text>
-                    QuoteTile (version 2.2.26138.0)
+                    QuoteTile (version 2.2.26138.1)
                 </TextBlock.Text>
             </TextBlock>
 
